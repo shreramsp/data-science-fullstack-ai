@@ -1,0 +1,5 @@
+autogluon.tabular[catboost]==1.6.1
+scikit-learn>=1.4,<2
+pandas>=2.0
+streamlit>=1.30
+plotly>=5.18

@@ -1,0 +1,18 @@
+[
+  {
+    "citation": "Wolpert (1992), Stacked Generalization",
+    "informs": "stacking a learner on out-of-fold predictions"
+  },
+  {
+    "citation": "Breiman (1996), Bagging Predictors",
+    "informs": "num_bag_folds as a variance-reduction knob"
+  },
+  {
+    "citation": "Caruana et al. (2004), Ensemble Selection from Libraries of Models",
+    "informs": "the greedy WeightedEnsemble at each stack level"
+  },
+  {
+    "citation": "Erickson et al. (2020), AutoGluon-Tabular, arXiv:2003.06505",
+    "informs": "combining bagging + multi-layer stacking as one recipe"
+  }
+]

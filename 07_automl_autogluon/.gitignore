@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Regenerable. `python src/train.py` recreates these bit-identically from the
+# fixed seed. Each task's fitted AutoGluon predictor directory (bagged +
+# stacked models) runs 50-250MB, too large to track; the small evaluation
+# artifacts under artifacts/ are what the dashboard actually reads and those
+# ARE tracked.
+models/

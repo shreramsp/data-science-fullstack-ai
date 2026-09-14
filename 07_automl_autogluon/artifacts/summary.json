@@ -1,0 +1,100 @@
+{
+  "breast_cancer": {
+    "task_key": "breast_cancer",
+    "display_name": "Breast Cancer Diagnosis",
+    "problem_type": "binary",
+    "eval_metric": "roc_auc",
+    "source": "sklearn.datasets.load_breast_cancer (569 rows, 30 features)",
+    "n_rows": 569,
+    "n_train_search": 455,
+    "n_test": 114,
+    "baseline_config": {
+      "num_bag_folds": 0,
+      "num_stack_levels": 0
+    },
+    "baseline_score_val": 0.9871001031991745,
+    "best_config": {
+      "num_bag_folds": 2,
+      "num_stack_levels": 0
+    },
+    "best_score_val": 0.9908152734778122,
+    "search_seconds": 5.6,
+    "search_evals": 4,
+    "best_model": "WeightedEnsemble_L2",
+    "stack_levels_fit": 2,
+    "n_models_fit": 4,
+    "test_metrics": {
+      "roc_auc": 0.9986772486772487,
+      "accuracy": 0.9649122807017544,
+      "balanced_accuracy": 0.9523809523809523,
+      "mcc": 0.9258200997725514,
+      "f1": 0.95,
+      "precision": 1.0,
+      "recall": 0.9047619047619048
+    }
+  },
+  "wine": {
+    "task_key": "wine",
+    "display_name": "Wine Cultivar Classification",
+    "problem_type": "multiclass",
+    "eval_metric": "log_loss",
+    "source": "sklearn.datasets.load_wine (178 rows, 13 features, 3 classes)",
+    "n_rows": 178,
+    "n_train_search": 142,
+    "n_test": 36,
+    "baseline_config": {
+      "num_bag_folds": 0,
+      "num_stack_levels": 0
+    },
+    "baseline_score_val": -0.028421396389603615,
+    "best_config": {
+      "num_bag_folds": 0,
+      "num_stack_levels": 0
+    },
+    "best_score_val": -0.028421396389603615,
+    "search_seconds": 29.4,
+    "search_evals": 2,
+    "best_model": "WeightedEnsemble_L2",
+    "stack_levels_fit": 2,
+    "n_models_fit": 4,
+    "test_metrics": {
+      "log_loss": -0.048926349729299545,
+      "accuracy": 0.9722222222222222,
+      "balanced_accuracy": 0.9761904761904763,
+      "mcc": 0.9591605129565426
+    }
+  },
+  "california_housing": {
+    "task_key": "california_housing",
+    "display_name": "California Housing Price",
+    "problem_type": "regression",
+    "eval_metric": "root_mean_squared_error",
+    "source": "sklearn.datasets.fetch_california_housing, seeded 3,000-row sample of 20,640",
+    "n_rows": 3000,
+    "n_train_search": 2400,
+    "n_test": 600,
+    "baseline_config": {
+      "num_bag_folds": 0,
+      "num_stack_levels": 0
+    },
+    "baseline_score_val": -0.5325107955344955,
+    "best_config": {
+      "num_bag_folds": 0,
+      "num_stack_levels": 0
+    },
+    "best_score_val": -0.5325107955344955,
+    "search_seconds": 4.2,
+    "search_evals": 2,
+    "best_model": "WeightedEnsemble_L2",
+    "stack_levels_fit": 2,
+    "n_models_fit": 4,
+    "test_metrics": {
+      "root_mean_squared_error": -0.5187671949312126,
+      "mean_squared_error": -0.2691194025367987,
+      "mean_absolute_error": -0.3528035433390299,
+      "r2": 0.7936447769361007,
+      "pearsonr": 0.8910003832301276,
+      "median_absolute_error": -0.24224688911437986
+    }
+  }
+}

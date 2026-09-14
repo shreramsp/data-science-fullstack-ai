@@ -1,0 +1,33 @@
+{
+  "task_key": "california_housing",
+  "display_name": "California Housing Price",
+  "problem_type": "regression",
+  "eval_metric": "root_mean_squared_error",
+  "source": "sklearn.datasets.fetch_california_housing, seeded 3,000-row sample of 20,640",
+  "n_rows": 3000,
+  "n_train_search": 2400,
+  "n_test": 600,
+  "baseline_config": {
+    "num_bag_folds": 0,
+    "num_stack_levels": 0
+  },
+  "baseline_score_val": -0.5325107955344955,
+  "best_config": {
+    "num_bag_folds": 0,
+    "num_stack_levels": 0
+  },
+  "best_score_val": -0.5325107955344955,
+  "search_seconds": 4.2,
+  "search_evals": 2,
+  "best_model": "WeightedEnsemble_L2",
+  "stack_levels_fit": 2,
+  "n_models_fit": 4,
+  "test_metrics": {
+    "root_mean_squared_error": -0.5187671949312126,
+    "mean_squared_error": -0.2691194025367987,
+    "mean_absolute_error": -0.3528035433390299,
+    "r2": 0.7936447769361007,
+    "pearsonr": 0.8910003832301276,
+    "median_absolute_error": -0.24224688911437986
+  }
+}

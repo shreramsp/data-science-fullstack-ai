@@ -1,0 +1,31 @@
+{
+  "task_key": "wine",
+  "display_name": "Wine Cultivar Classification",
+  "problem_type": "multiclass",
+  "eval_metric": "log_loss",
+  "source": "sklearn.datasets.load_wine (178 rows, 13 features, 3 classes)",
+  "n_rows": 178,
+  "n_train_search": 142,
+  "n_test": 36,
+  "baseline_config": {
+    "num_bag_folds": 0,
+    "num_stack_levels": 0
+  },
+  "baseline_score_val": -0.028421396389603615,
+  "best_config": {
+    "num_bag_folds": 0,
+    "num_stack_levels": 0
+  },
+  "best_score_val": -0.028421396389603615,
+  "search_seconds": 29.4,
+  "search_evals": 2,
+  "best_model": "WeightedEnsemble_L2",
+  "stack_levels_fit": 2,
+  "n_models_fit": 4,
+  "test_metrics": {
+    "log_loss": -0.048926349729299545,
+    "accuracy": 0.9722222222222222,
+    "balanced_accuracy": 0.9761904761904763,
+    "mcc": 0.9591605129565426
+  }
+}
