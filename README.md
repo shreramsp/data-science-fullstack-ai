@@ -24,3 +24,7 @@ A collection of independently implemented data science and full-stack applicatio
 | 15 | [SPY Forecasting Platform](./15_spy_timeseries_sota_forecasting/) | Probabilistic forecasting and strategy evaluation | Complete |
 
 Every project is self-contained. Open its directory for setup, usage, methodology, results, and limitations.
+
+## AI-assisted development
+
+This portfolio was developed with coding assistance from OpenAI Codex and Anthropic Claude. Project direction, integration, testing, and final decisions were managed by the repository owner.
