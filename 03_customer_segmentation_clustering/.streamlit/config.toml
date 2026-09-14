@@ -1,0 +1,4 @@
+# Pinned to the light base: the categorical chart palette in app.py was
+# validated for colour-vision deficiency against a light chart surface.
+[theme]
+base = "light"
