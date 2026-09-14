@@ -1,0 +1,64 @@
+{
+  "eda": {
+    "n_line_items": 7083,
+    "n_invoices": 1500,
+    "n_customers": 422,
+    "n_products": 300,
+    "n_categories": 8,
+    "date_min": "2024-01-01",
+    "date_max": "2024-12-30",
+    "total_revenue": 434908.9,
+    "avg_line_value": 61.4,
+    "cleaning_report": {
+      "rows_in": 7083,
+      "rows_out": 7083,
+      "rows_dropped": 0
+    }
+  },
+  "clustering": {
+    "silhouette_by_k": {
+      "2": 0.5,
+      "3": 0.4573,
+      "4": 0.4181,
+      "5": 0.4207,
+      "6": 0.4331
+    },
+    "best_k": 2,
+    "best_silhouette": 0.5
+  },
+  "anomaly_detection": {
+    "n_flagged": 30,
+    "contamination": 0.02,
+    "flagged_share": 0.02
+  },
+  "supervised_learning": {
+    "metrics": {
+      "accuracy": 0.6887,
+      "precision": 0.7,
+      "recall": 0.6604,
+      "f1": 0.6796,
+      "roc_auc": 0.7828,
+      "n_train": 316,
+      "n_test": 106,
+      "positive_rate": 0.4976
+    },
+    "median_recency_days": 98.0
+  },
+  "association_rules": {
+    "n_baskets": 1500,
+    "n_frequent_itemsets": 341,
+    "n_rules": 82
+  },
+  "lsh": {
+    "corpus_size": 20100,
+    "n_queries": 40,
+    "k": 5,
+    "avg_recall_at_k": 0.64,
+    "avg_candidate_set_size": 897.4,
+    "candidate_fraction_of_corpus": 0.04465,
+    "avg_brute_force_ms": 0.9262,
+    "avg_lsh_ms": 0.1041,
+    "speedup_x": 8.9
+  },
+  "pipeline_runtime_sec": 0.6
+}
