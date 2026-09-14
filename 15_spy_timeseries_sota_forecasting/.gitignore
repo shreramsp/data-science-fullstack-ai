@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Regenerable. `python src/train.py` recreates these bit-identically from the
+# fixed seed (20260913); the dashboard reads them at runtime.
+artifacts/
+data/spy_prices.csv
