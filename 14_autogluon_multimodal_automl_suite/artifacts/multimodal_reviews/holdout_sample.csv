@@ -1,0 +1,21 @@
+review_text,rating,price,category,shipping_method,recommended,predicted_recommended,predicted_proba_yes
+cheaply made and broke quickly. stopped working after two days.,2,163.26,kitchen,two_day,yes,no,0.03639264777302742
+"fantastic value, highly recommend. excellent build quality, would buy again.",3,98.44,home,two_day,yes,yes,0.6401028633117676
+battery life is outstanding.,5,211.8,home,standard,yes,yes,0.9632512331008911
+"not as described, very disappointed.",1,184.62,home,standard,no,no,0.03317984938621521
+very durable and easy to use. customer service was fast and helpful.,4,57.7,electronics,two_day,yes,yes,0.9450902938842773
+"fits perfectly and looks great. fantastic value, highly recommend.",2,119.76,home,standard,no,no,0.10744252800941467
+"not as described, very disappointed. battery drains far too fast.",2,105.5,home,standard,yes,no,0.05127942934632301
+"not as described, very disappointed. poor build quality for the price.",2,248.57,home,expedited,no,no,0.0941784456372261
+stopped working after two days. poor build quality for the price.,1,13.39,toys,standard,no,no,0.025184834375977516
+difficult to set up and unreliable.,2,21.38,toys,expedited,yes,no,0.07874991744756699
+customer service was fast and helpful. fits perfectly and looks great.,3,62.49,electronics,expedited,yes,no,0.4965582489967346
+"excellent build quality, would buy again. very durable and easy to use.",5,222.34,home,standard,yes,yes,0.9716702699661255
+stopped working after two days. poor build quality for the price.,2,145.5,toys,expedited,no,no,0.03638017177581787
+customer service was fast and helpful.,4,216.2,sports,expedited,yes,yes,0.9433573484420776
+"fantastic value, highly recommend. fits perfectly and looks great.",4,197.46,electronics,standard,yes,yes,0.9562988877296448
+fits perfectly and looks great.,3,198.43,sports,standard,yes,yes,0.6254251599311829
+works perfectly and arrived early.,3,242.68,electronics,two_day,yes,yes,0.5890594720840454
+"not as described, very disappointed. poor build quality for the price.",2,86.95,home,two_day,no,no,0.12498655915260315
+cheaply made and broke quickly. stopped working after two days.,3,37.99,toys,expedited,no,no,0.37022969126701355
+"battery life is outstanding. excellent build quality, would buy again.",3,204.01,toys,expedited,yes,yes,0.5351779460906982

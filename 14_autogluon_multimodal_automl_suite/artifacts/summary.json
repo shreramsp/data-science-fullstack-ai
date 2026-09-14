@@ -1,0 +1,56 @@
+{
+  "multimodal_reviews": {
+    "task_key": "multimodal_reviews",
+    "display_name": "Multimodal Product Review Classifier",
+    "problem_type": "binary",
+    "eval_metric": "roc_auc",
+    "source": "Deterministic synthetic generator (text + tabular features, seed=42)",
+    "n_rows": 1200,
+    "n_train": 960,
+    "n_test": 240,
+    "fit_seconds": 11.3,
+    "best_model": "WeightedEnsemble_L2",
+    "n_models_fit": 10,
+    "test_metrics": {
+      "roc_auc": 0.9046527777777779,
+      "accuracy": 0.825,
+      "balanced_accuracy": 0.825,
+      "mcc": 0.6503614123159434,
+      "f1": 0.8220338983050848,
+      "precision": 0.8362068965517241,
+      "recall": 0.8083333333333333
+    }
+  },
+  "diabetes_quantile": {
+    "task_key": "diabetes_quantile",
+    "display_name": "Diabetes Progression Quantile Regression",
+    "problem_type": "quantile",
+    "eval_metric": "pinball_loss",
+    "source": "sklearn.datasets.load_diabetes (442 rows, 10 features)",
+    "n_rows": 442,
+    "n_train": 353,
+    "n_test": 89,
+    "fit_seconds": 9.7,
+    "best_model": "WeightedEnsemble_L2",
+    "n_models_fit": 8,
+    "test_metrics": {
+      "pinball_loss": -13.260947339632983
+    },
+    "p10_p90_holdout_coverage": 0.75
+  },
+  "retail_demand": {
+    "task_key": "retail_demand",
+    "display_name": "Multi-Series Retail Demand Forecast",
+    "eval_metric": "MASE",
+    "source": "Deterministic synthetic generator (6 items x 180 days, seasonal + trend, seed=42)",
+    "n_series": 6,
+    "n_rows": 1080,
+    "prediction_length": 14,
+    "fit_seconds": 10.4,
+    "best_model": "WeightedEnsemble",
+    "n_models_fit": 8,
+    "test_metrics": {
+      "MASE": -0.7060946627889453
+    }
+  }
+}

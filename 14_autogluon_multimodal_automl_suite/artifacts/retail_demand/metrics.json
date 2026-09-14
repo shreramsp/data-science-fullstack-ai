@@ -1,0 +1,15 @@
+{
+  "task_key": "retail_demand",
+  "display_name": "Multi-Series Retail Demand Forecast",
+  "eval_metric": "MASE",
+  "source": "Deterministic synthetic generator (6 items x 180 days, seasonal + trend, seed=42)",
+  "n_series": 6,
+  "n_rows": 1080,
+  "prediction_length": 14,
+  "fit_seconds": 10.4,
+  "best_model": "WeightedEnsemble",
+  "n_models_fit": 8,
+  "test_metrics": {
+    "MASE": -0.7060946627889453
+  }
+}

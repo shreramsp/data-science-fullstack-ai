@@ -1,0 +1,17 @@
+{
+  "task_key": "diabetes_quantile",
+  "display_name": "Diabetes Progression Quantile Regression",
+  "problem_type": "quantile",
+  "eval_metric": "pinball_loss",
+  "source": "sklearn.datasets.load_diabetes (442 rows, 10 features)",
+  "n_rows": 442,
+  "n_train": 353,
+  "n_test": 89,
+  "fit_seconds": 9.7,
+  "best_model": "WeightedEnsemble_L2",
+  "n_models_fit": 8,
+  "test_metrics": {
+    "pinball_loss": -13.260947339632983
+  },
+  "p10_p90_holdout_coverage": 0.75
+}
