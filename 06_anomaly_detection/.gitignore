@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Regenerable, and too large to track. `python src/train.py` recreates all of
+# these bit-identically from the fixed seed (verified).
+data/transactions.csv
+data/creditcard.csv
+artifacts/best_pipeline.joblib
+artifacts/test_scores.csv

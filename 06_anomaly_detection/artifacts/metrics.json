@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-09-13T22:10:43.993230+00:00",
+  "runtime_seconds": 151.2,
+  "data_source": "synthetic-fallback",
+  "seed": 20260913,
+  "cleaning": {
+    "raw_rows": 60090,
+    "duplicates_dropped": 90,
+    "negative_amounts_fixed": 40,
+    "missing_amounts_imputed": 120,
+    "final_rows": 60000,
+    "anomalies": 300,
+    "prevalence": 0.005
+  },
+  "splits": {
+    "train": {
+      "rows": 36000,
+      "anomalies": 180
+    },
+    "valid": {
+      "rows": 12000,
+      "anomalies": 60
+    },
+    "test": {
+      "rows": 12000,
+      "anomalies": 60
+    }
+  },
+  "alert_budget": 0.005,
+  "search": {
+    "restarts": 3,
+    "evaluation_budget": 140,
+    "evaluations_logged": 140,
+    "pipelines_fitted": 69,
+    "objective": "validation average precision",
+    "best_config": {
+      "feature_set": "components_amount_time",
+      "scaler": "standard",
+      "detector": "elliptic",
+      "param_support_fraction": 1.0
+    },
+    "best_label": "elliptic[support_fraction=1.0] | components_amount_time | standard",
+    "best_valid": {
+      "average_precision": 0.28190434246571594,
+      "roc_auc": 0.9825111669458403,
+      "seconds": 3.920116749999579,
+      "alerts": 60,
+      "precision_at_budget": 0.2,
+      "recall_at_budget": 0.2,
+      "caught": 12,
+      "missed": 48
+    }
+  },
+  "baseline_best": {
+    "detector": "elliptic",
+    "valid_average_precision": 0.27191306854418484,
+    "test_average_precision": 0.26716395339480054
+  },
+  "test": {
+    "average_precision": 0.2816144486784951,
+    "roc_auc": 0.9732928531546622,
+    "alerts": 60,
+    "precision_at_budget": 0.25,
+    "recall_at_budget": 0.25,
+    "caught": 15,
+    "missed": 45
+  },
+  "operating_point": {
+    "threshold": 149.12617159184768,
+    "threshold_chosen_on": "validation split, top 0.5% alert budget",
+    "true_positives": 12,
+    "false_positives": 28,
+    "false_negatives": 48,
+    "true_negatives": 11912,
+    "precision": 0.3,
+    "recall": 0.2,
+    "alert_rate": 0.0033333333333333335
+  },
+  "literature": [
+    {
+      "topic": "Isolation Forest",
+      "source": "Liu, Ting & Zhou (ICDM 2008)",
+      "used_for": "Random-split isolation depth as an anomaly score; one of the five candidate detectors."
+    },
+    {
+      "topic": "Local Outlier Factor",
+      "source": "Breunig, Kriegel, Ng & Sander (SIGMOD 2000)",
+      "used_for": "Local-density-ratio scoring, for anomalies that are only anomalous relative to their neighbourhood."
+    },
+    {
+      "topic": "One-Class SVM",
+      "source": "Scholkopf, Platt, Shawe-Taylor, Smola & Williamson (Neural Computation 2001)",
+      "used_for": "Kernel support estimation of the inlier region; fitted on a bounded subsample for tractability."
+    },
+    {
+      "topic": "Minimum Covariance Determinant",
+      "source": "Rousseeuw & Van Driessen (Technometrics 1999)",
+      "used_for": "Robust Mahalanobis distance (Elliptic Envelope) that is not dragged by the contamination itself."
+    },
+    {
+      "topic": "PCA reconstruction error",
+      "source": "Shyu, Chen, Sarinnapakorn & Chang (2003)",
+      "used_for": "Residual off the principal subspace as a score; the cheapest detector in the pool."
+    },
+    {
+      "topic": "PR over ROC under class imbalance",
+      "source": "Davis & Goadrich (ICML 2006); Saito & Rehmsmeier (PLOS ONE 2015)",
+      "used_for": "Average precision is the hill-climbing objective; ROC-AUC is reported but not optimised."
+    },
+    {
+      "topic": "Credit-card fraud benchmark",
+      "source": "Dal Pozzolo, Caelen, Johnson & Bontempi (IEEE CIDM 2015)",
+      "used_for": "Origin of the ULB dataset this platform targets, and of the practice of evaluating at a fixed alert budget."
+    },
+    {
+      "topic": "Hill climbing with random restarts",
+      "source": "Russell & Norvig, AIMA, ch. 4",
+      "used_for": "The search strategy: steepest-ascent moves, restarted to escape local optima."
+    }
+  ]
+}

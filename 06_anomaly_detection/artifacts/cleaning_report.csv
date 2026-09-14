@@ -1,0 +1,6 @@
+step,rows,detail
+raw rows loaded,60090,
+exact duplicates dropped,-90,re-submitted/settlement echoes would double-count in scoring
+negative amounts corrected,40,sign flipped to absolute value (refund artefacts)
+missing amounts imputed,120,median amount; dropping rows would bias the minority class
+rows retained for modelling,60000,300 anomalies (0.500% prevalence)
