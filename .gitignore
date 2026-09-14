@@ -1,0 +1,13 @@
+.DS_Store
+**/node_modules/
+**/.next/
+**/.vinext/
+**/dist/
+**/.wrangler/
+**/coverage/
+**/.env*
+*.log
+
+# Local planning and source-prompt files
+PROJECT_PROMPTS.md
+PROMPTS.md
