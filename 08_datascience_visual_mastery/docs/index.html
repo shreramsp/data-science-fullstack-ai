@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science Visual Foundations</title>
+<style>
+  :root {
+    --bg: #ffffff; --ink: #0b0b0b; --muted: #52514e; --grid: #e6e5e1;
+    --a: #2a78d6; --b: #eb6834; --accent: #1baf7a; --card: #f7f7f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #14140f; --ink: #f2f1ec; --muted: #b9b7ae; --grid: #33322c;
+             --card: #1d1c17; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding-inline: 16px;
+  }
+  main { max-width: 900px; margin: 0 auto; padding-block: 24px; }
+  h1 { font-size: 1.7rem; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; position: sticky; top: 0;
+        background: var(--bg); padding-block: 8px; z-index: 10; }
+  nav button {
+    background: var(--card); color: var(--ink); border: 1px solid var(--grid);
+    border-radius: 8px; padding: 8px 12px; font-size: 0.85rem; cursor: pointer;
+  }
+  nav button.active { background: var(--a); color: #fff; border-color: var(--a); }
+  section { display: none; }
+  section.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--grid); border-radius: 10px;
+          padding: 16px; margin-bottom: 16px; }
+  .formula { font-family: "Cambria Math", Georgia, serif; font-size: 1.05rem;
+             background: var(--card); border-left: 3px solid var(--a); padding: 10px 14px;
+             margin-block: 12px; overflow-x: auto; }
+  label { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
+  input[type=range] { width: 100%; }
+  canvas { width: 100%; max-width: 100%; height: auto; border: 1px solid var(--grid);
+           border-radius: 8px; background: var(--bg); margin-top: 10px; }
+  .metrics { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; font-size: 0.9rem; }
+  .metrics div { background: var(--bg); border: 1px solid var(--grid); border-radius: 8px;
+                 padding: 6px 10px; }
+  details { border: 1px solid var(--grid); border-radius: 8px; padding: 10px 14px;
+            margin-bottom: 8px; background: var(--card); }
+  summary { cursor: pointer; font-weight: 600; }
+  .quiz-option { display: block; width: 100%; text-align: left; margin-top: 6px;
+                 padding: 8px 10px; border-radius: 6px; border: 1px solid var(--grid);
+                 background: var(--bg); color: var(--ink); cursor: pointer; }
+  .quiz-option.correct { background: #1baf7a33; border-color: var(--accent); }
+  .quiz-option.wrong { background: #eb683433; border-color: var(--b); }
+  .explain { margin-top: 8px; font-size: 0.88rem; color: var(--muted); }
+  footer { color: var(--muted); font-size: 0.8rem; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>📐 Data Science Visual Foundations Curriculum</h1>
+  <p class="subtitle">
+    Companion GitHub Pages site for teaching beginner data science students
+    naive bayes, model evaluation,
+    differential calculus / gradient descent, and the chain rule / backpropagation
+    with deep intuition, rigorous math, and live simulation. This is an independent
+    implementation; the full interactive experience (all four live simulations,
+    quizzes, interview prep) lives in the companion Streamlit app in this project
+    directory — this static page mirrors two of the live simulations in
+    dependency-free vanilla JS so it can be hosted directly on GitHub Pages.
+  </p>
+
+  <nav id="tabs"></nav>
+
+  <section id="nb" class="card">
+    <h2>1. Naive Bayes</h2>
+    <p>Bayes' theorem turns a likelihood into a posterior belief:</p>
+    <div class="formula">P(class | x) = P(x | class) &middot; P(class) / P(x)</div>
+    <p>The "naive" assumption: features are conditionally independent given the
+      class, so a multi-feature likelihood is just a product of simple
+      per-feature likelihoods. Worked example: a spam filter sees the word
+      "free". Suppose P(free | spam) = 0.4, P(free | ham) = 0.05, and the prior
+      P(spam) = 0.3. Then:</p>
+    <div class="formula">
+      P(spam | "free") = (0.4 &times; 0.3) / (0.4 &times; 0.3 + 0.05 &times; 0.7)
+      = 0.12 / 0.155 &approx; 0.77
+    </div>
+    <p>Even though "free" alone isn't proof of spam, it shifts the posterior
+      from a 30% prior up to about 77%. The live 2-D contour simulation for this
+      concept is in the Streamlit app (<code>streamlit run app.py</code>).</p>
+  </section>
+
+  <section id="eval" class="card">
+    <h2>2. Model Evaluation</h2>
+    <p><strong>Type I error</strong> (false positive): predicted positive, actually
+      negative. <strong>Type II error</strong> (false negative): predicted negative,
+      actually positive. Moving the decision threshold trades one off against the other.</p>
+    <label for="threshold">Decision threshold: <span id="thresholdVal"></span></label>
+    <input type="range" id="threshold" min="-3" max="4" step="0.05" value="0.5">
+    <canvas id="evalCanvas" width="700" height="260"></canvas>
+    <div class="metrics" id="evalMetrics"></div>
+  </section>
+
+  <section id="calc" class="card">
+    <h2>3. Calculus &amp; Gradient Descent</h2>
+    <div class="formula">f'(x) = lim(h&rarr;0) [f(x+h) - f(x)] / h &nbsp;&nbsp;|&nbsp;&nbsp; x_(t+1) = x_t - &eta; f'(x_t)</div>
+    <label for="startX">Start x: <span id="startXVal"></span></label>
+    <input type="range" id="startX" min="-3.5" max="3.5" step="0.1" value="-3">
+    <label for="lr">Learning rate &eta;: <span id="lrVal"></span></label>
+    <input type="range" id="lr" min="0.01" max="0.9" step="0.01" value="0.15">
+    <label for="steps">Steps: <span id="stepsVal"></span></label>
+    <input type="range" id="steps" min="1" max="40" step="1" value="15">
+    <canvas id="calcCanvas" width="700" height="260"></canvas>
+    <p class="explain" id="calcExplain"></p>
+  </section>
+
+  <section id="chain" class="card">
+    <h2>4. Chain Rule &amp; Backprop</h2>
+    <div class="formula">d/dx f(g(x)) = f'(g(x)) &middot; g'(x)</div>
+    <p>A tiny network: z1 = w1&middot;x + b1, a1 = tanh(z1), &yacute; = w2&middot;a1 + b2,
+      L = &frac12;(&yacute; - y)&sup2;. Backprop multiplies local derivatives layer by
+      layer, back to front. Worked example with x=1, y=0.5, w1=0.8, b1=0, w2=-0.6, b2=0:</p>
+    <div class="formula">
+      z1 = 0.8 &rarr; a1 = tanh(0.8) &approx; 0.664 &rarr; &yacute; = -0.398<br>
+      dL/d&yacute; = &yacute; - y = -0.898<br>
+      dL/da1 = dL/d&yacute; &middot; w2 = 0.539<br>
+      da1/dz1 = 1 - tanh(z1)&sup2; &approx; 0.559<br>
+      dL/dz1 = 0.539 &times; 0.559 &approx; 0.301<br>
+      dL/dw1 = dL/dz1 &middot; x &approx; 0.301
+    </div>
+    <p>The full training simulation (loss curve + learned fit to sin(x)) is in
+      the Streamlit app.</p>
+  </section>
+
+  <section id="quiz" class="card">
+    <h2>📝 Quick Quiz</h2>
+    <div id="quizContainer"></div>
+  </section>
+
+  <section id="interview" class="card">
+    <h2>💼 Interview Prep</h2>
+    <div id="interviewContainer"></div>
+  </section>
+
+  <footer>
+    Independent implementation for an academic data science portfolio.
+    Full interactive curriculum (all four live simulations + full quiz bank +
+    full interview-prep bank) lives in the project's Streamlit app.
+  </footer>
+</main>
+
+<script>
+const sections = ["nb", "eval", "calc", "chain", "quiz", "interview"];
+const labels = ["1. Naive Bayes", "2. Model Evaluation", "3. Calculus & GD",
+                "4. Chain Rule", "📝 Quiz", "💼 Interview"];
+const nav = document.getElementById("tabs");
+sections.forEach((id, i) => {
+  const btn = document.createElement("button");
+  btn.textContent = labels[i];
+  btn.onclick = () => showSection(id);
+  btn.id = "btn-" + id;
+  nav.appendChild(btn);
+});
+function showSection(id) {
+  sections.forEach(s => {
+    document.getElementById(s).classList.toggle("active", s === id);
+    document.getElementById("btn-" + s).classList.toggle("active", s === id);
+  });
+}
+showSection("nb");
+
+// ---- helpers: colors respecting theme ----
+const css = getComputedStyle(document.documentElement);
+function cssVar(name) { return getComputedStyle(document.body).getPropertyValue(name).trim() || "#000"; }
+
+// ---- Model evaluation demo ----
+function gaussianRandom(mean, std, rng) {
+  let u = 1 - rng(), v = rng();
+  let z = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  return mean + z * std;
+}
+function mulberry32(seed) {
+  return function () {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rng = mulberry32(42);
+const negScores = Array.from({length: 300}, () => gaussianRandom(0, 1, rng));
+const posScores = Array.from({length: 300}, () => gaussianRandom(1.5, 1, rng));
+
+function drawEval() {
+  const threshold = parseFloat(document.getElementById("threshold").value);
+  document.getElementById("thresholdVal").textContent = threshold.toFixed(2);
+  const canvas = document.getElementById("evalCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const ink = cssVar("--ink"), a = cssVar("--a"), b = cssVar("--b"), grid = cssVar("--grid");
+
+  const xmin = -4, xmax = 5.5, bins = 40;
+  const binW = (xmax - xmin) / bins;
+  const negHist = new Array(bins).fill(0), posHist = new Array(bins).fill(0);
+  negScores.forEach(s => { const i = Math.min(bins - 1, Math.max(0, Math.floor((s - xmin) / binW))); negHist[i]++; });
+  posScores.forEach(s => { const i = Math.min(bins - 1, Math.max(0, Math.floor((s - xmin) / binW))); posHist[i]++; });
+  const maxCount = Math.max(...negHist, ...posHist);
+
+  const W = canvas.width, H = canvas.height, padL = 40, padB = 30, padT = 10, padR = 10;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const xToPx = x => padL + ((x - xmin) / (xmax - xmin)) * plotW;
+
+  ctx.strokeStyle = grid; ctx.beginPath();
+  ctx.moveTo(padL, padT); ctx.lineTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+
+  function drawHist(hist, color) {
+    ctx.fillStyle = color + "99";
+    hist.forEach((count, i) => {
+      const barH = (count / maxCount) * plotH;
+      const x = padL + i * (plotW / bins);
+      ctx.fillRect(x, H - padB - barH, plotW / bins - 1, barH);
+    });
+  }
+  drawHist(negHist, b);
+  drawHist(posHist, a);
+
+  const tx = xToPx(threshold);
+  ctx.strokeStyle = ink; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(tx, padT); ctx.lineTo(tx, H - padB); ctx.stroke();
+  ctx.lineWidth = 1;
+
+  ctx.fillStyle = ink; ctx.font = "11px sans-serif";
+  ctx.fillText("negative class (orange)  |  positive class (blue)  |  threshold (line)", padL, 14);
+
+  let tp = 0, fp = 0, fn = 0, tn = 0;
+  negScores.forEach(s => s >= threshold ? fp++ : tn++);
+  posScores.forEach(s => s >= threshold ? tp++ : fn++);
+  const precision = tp / (tp + fp) || 0, recall = tp / (tp + fn) || 0;
+  const accuracy = (tp + tn) / (tp + fp + fn + tn);
+  const f1 = (precision + recall) > 0 ? 2 * precision * recall / (precision + recall) : 0;
+
+  document.getElementById("evalMetrics").innerHTML = `
+    <div>TP ${tp}</div><div>FP ${fp} (Type I)</div><div>FN ${fn} (Type II)</div><div>TN ${tn}</div>
+    <div>Precision ${precision.toFixed(2)}</div><div>Recall ${recall.toFixed(2)}</div>
+    <div>Accuracy ${accuracy.toFixed(2)}</div><div>F1 ${f1.toFixed(2)}</div>`;
+}
+document.getElementById("threshold").addEventListener("input", drawEval);
+
+// ---- Calculus / gradient descent demo ----
+function f(x) { return 0.15 * x ** 4 - 0.9 * x ** 2 + 0.3 * x + 3; }
+function fPrime(x) { return 0.6 * x ** 3 - 1.8 * x + 0.3; }
+
+function drawCalc() {
+  const startX = parseFloat(document.getElementById("startX").value);
+  const lr = parseFloat(document.getElementById("lr").value);
+  const steps = parseInt(document.getElementById("steps").value);
+  document.getElementById("startXVal").textContent = startX.toFixed(2);
+  document.getElementById("lrVal").textContent = lr.toFixed(2);
+  document.getElementById("stepsVal").textContent = steps;
+
+  const path = [startX];
+  let x = startX;
+  for (let i = 0; i < steps; i++) { x = x - lr * fPrime(x); path.push(x); }
+
+  const canvas = document.getElementById("calcCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const ink = cssVar("--ink"), a = cssVar("--a"), accent = cssVar("--accent"), grid = cssVar("--grid");
+
+  const xmin = -3.5, xmax = 3.5;
+  const ys = []; for (let px = 0; px <= 300; px++) ys.push(f(xmin + (px / 300) * (xmax - xmin)));
+  const ymin = Math.min(...ys), ymax = Math.max(...ys);
+
+  const W = canvas.width, H = canvas.height, padL = 40, padB = 30, padT = 10, padR = 10;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const xToPx = xv => padL + ((xv - xmin) / (xmax - xmin)) * plotW;
+  const yToPx = yv => padT + plotH - ((yv - ymin) / (ymax - ymin)) * plotH;
+
+  ctx.strokeStyle = grid; ctx.beginPath();
+  ctx.moveTo(padL, padT); ctx.lineTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+
+  ctx.strokeStyle = ink; ctx.globalAlpha = 0.5; ctx.beginPath();
+  for (let px = 0; px <= 300; px++) {
+    const xv = xmin + (px / 300) * (xmax - xmin);
+    const py = yToPx(f(xv)), pxCanvas = xToPx(xv);
+    px === 0 ? ctx.moveTo(pxCanvas, py) : ctx.lineTo(pxCanvas, py);
+  }
+  ctx.stroke(); ctx.globalAlpha = 1;
+
+  ctx.strokeStyle = a; ctx.fillStyle = a; ctx.lineWidth = 2;
+  ctx.beginPath();
+  path.forEach((xv, i) => {
+    const px = xToPx(xv), py = yToPx(f(xv));
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  });
+  ctx.stroke();
+  path.forEach((xv) => { ctx.beginPath(); ctx.arc(xToPx(xv), yToPx(f(xv)), 3, 0, 7); ctx.fill(); });
+  ctx.lineWidth = 1;
+
+  ctx.fillStyle = accent;
+  ctx.beginPath(); ctx.arc(xToPx(path[0]), yToPx(f(path[0])), 6, 0, 7); ctx.fill();
+
+  document.getElementById("calcExplain").textContent =
+    `After ${steps} steps with learning rate ${lr}, x moved from ${path[0].toFixed(3)} ` +
+    `to ${path[path.length - 1].toFixed(3)} (f(x): ${f(path[0]).toFixed(3)} -> ` +
+    `${f(path[path.length - 1]).toFixed(3)}). Try a large learning rate to see it overshoot.`;
+}
+["startX", "lr", "steps"].forEach(id => document.getElementById(id).addEventListener("input", drawCalc));
+
+// ---- Quiz ----
+const quizData = [
+  { concept: "Naive Bayes", q: "What does 'naive' assume?",
+    options: ["Features are conditionally independent given the class", "Classes are linearly separable", "No noise in data"],
+    answer: 0, explain: "The joint likelihood factorizes into per-feature products." },
+  { concept: "Model Evaluation", q: "A Type I error is a:",
+    options: ["True Positive", "False Positive", "False Negative"],
+    answer: 1, explain: "Type I = false positive (predicted positive, actually negative)." },
+  { concept: "Calculus & GD", q: "Gradient descent update rule is:",
+    options: ["x = x + lr*f(x)", "x = x - lr*f'(x)", "x = f'(x)"],
+    answer: 1, explain: "We step opposite the gradient, scaled by the learning rate." },
+  { concept: "Chain Rule", q: "d/dx f(g(x)) equals:",
+    options: ["f'(x)*g'(x)", "f'(g(x))*g'(x)", "f(g'(x))"],
+    answer: 1, explain: "Outer derivative evaluated at g(x), times inner derivative." },
+];
+const quizContainer = document.getElementById("quizContainer");
+quizData.forEach((item, qi) => {
+  const wrap = document.createElement("div");
+  wrap.style.marginBottom = "16px";
+  wrap.innerHTML = `<strong>${item.concept}:</strong> ${item.q}`;
+  item.options.forEach((opt, oi) => {
+    const b = document.createElement("button");
+    b.className = "quiz-option";
+    b.textContent = opt;
+    b.onclick = () => {
+      const buttons = wrap.querySelectorAll(".quiz-option");
+      buttons.forEach(x => x.disabled = true);
+      b.classList.add(oi === item.answer ? "correct" : "wrong");
+      if (oi !== item.answer) buttons[item.answer].classList.add("correct");
+      const ex = document.createElement("div");
+      ex.className = "explain"; ex.textContent = item.explain;
+      wrap.appendChild(ex);
+    };
+    wrap.appendChild(b);
+  });
+  quizContainer.appendChild(wrap);
+});
+
+// ---- Interview prep ----
+const interviewData = [
+  { q: "Why does Naive Bayes work well despite its independence assumption?",
+    a: "It only needs to rank classes correctly, not estimate exact probabilities; correlated features are often 'double counted' similarly across classes, preserving the ranking." },
+  { q: "Why is accuracy misleading on imbalanced data?",
+    a: "A model predicting only the majority class can score high accuracy while having zero recall on the minority class you actually care about." },
+  { q: "Why do we subtract the gradient in gradient descent?",
+    a: "The gradient points toward steepest increase; subtracting it moves parameters toward lower loss (downhill)." },
+  { q: "What is the vanishing gradient problem?",
+    a: "Backprop multiplies many local derivatives together; if each is small, the product shrinks exponentially with depth, starving early layers of gradient signal." },
+];
+const interviewContainer = document.getElementById("interviewContainer");
+interviewData.forEach(item => {
+  const d = document.createElement("details");
+  d.innerHTML = `<summary>${item.q}</summary><p>${item.a}</p>`;
+  interviewContainer.appendChild(d);
+});
+
+drawEval();
+drawCalc();
+</script>
+</body>
+</html>
