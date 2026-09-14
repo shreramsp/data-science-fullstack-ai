@@ -1,0 +1,56 @@
+{
+  "seed": 1337,
+  "n_concepts": 49,
+  "n_categories": 11,
+  "base_combinations": 2000,
+  "train_examples": 6408,
+  "train_base_combinations": 1602,
+  "val_examples": 199,
+  "test_examples": 199,
+  "augmentation_variants_per_train_combination": 4,
+  "split_method": "stratified per intent (80/10/10 within each intent), plus a repair pass guaranteeing every key has >=1 training example",
+  "intent_counts": {
+    "category": 245,
+    "compare": 560,
+    "define": 588,
+    "family": 188,
+    "list": 36,
+    "off_domain": 64,
+    "smalltalk": 25,
+    "use": 294
+  },
+  "intent_counts_by_split": {
+    "train_base": {
+      "category": 197,
+      "compare": 448,
+      "define": 470,
+      "family": 150,
+      "list": 28,
+      "off_domain": 52,
+      "smalltalk": 21,
+      "use": 236
+    },
+    "val": {
+      "category": 24,
+      "compare": 56,
+      "define": 59,
+      "family": 19,
+      "list": 4,
+      "off_domain": 6,
+      "smalltalk": 2,
+      "use": 29
+    },
+    "test": {
+      "category": 24,
+      "compare": 56,
+      "define": 59,
+      "family": 19,
+      "list": 4,
+      "off_domain": 6,
+      "smalltalk": 2,
+      "use": 29
+    }
+  },
+  "pretrain_characters": 17610,
+  "pretrain_whitespace_tokens": 3160
+}

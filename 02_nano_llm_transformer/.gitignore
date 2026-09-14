@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+models/*.pt
+models/tokenizer.json
+models/metrics.json
+artifacts/
