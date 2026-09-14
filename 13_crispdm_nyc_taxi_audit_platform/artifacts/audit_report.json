@@ -1,0 +1,89 @@
+{
+  "raw_data_quality": {
+    "stage": "raw_data_quality",
+    "n_rows": 8040,
+    "missing_pct_by_column": {
+      "passenger_count": 1.01,
+      "payment_type": 1.01
+    },
+    "checks": [
+      {
+        "check": "missing_values",
+        "status": "flagged",
+        "detail": {
+          "passenger_count": 81,
+          "payment_type": 81
+        }
+      },
+      {
+        "check": "duplicate_rows",
+        "status": "flagged",
+        "detail": {
+          "duplicate_row_count": 40
+        }
+      },
+      {
+        "check": "coordinates_within_nyc_bounds",
+        "status": "flagged",
+        "detail": {
+          "rows_out_of_bounds": 80
+        }
+      },
+      {
+        "check": "non_negative_fares",
+        "status": "flagged",
+        "detail": {
+          "negative_fare_rows": 20
+        }
+      },
+      {
+        "check": "positive_trip_distance",
+        "status": "pass",
+        "detail": {
+          "zero_or_negative_distance_rows": 0
+        }
+      }
+    ]
+  },
+  "cleaning_transparency": {
+    "stage": "cleaning_transparency",
+    "raw_rows": 8040,
+    "clean_rows": 7900,
+    "rows_dropped": 140,
+    "pct_dropped": 1.74
+  },
+  "leakage_check": {
+    "stage": "leakage_check",
+    "target_column": "total_amount",
+    "target_present_in_features": false,
+    "status": "pass"
+  },
+  "split_integrity": {
+    "stage": "split_integrity",
+    "train_rows": 6320,
+    "test_rows": 1580,
+    "id_overlap_count": 0,
+    "status": "pass",
+    "payment_type_share_train": {
+      "card": 0.616,
+      "cash": 0.275,
+      "mobile_wallet": 0.08,
+      "no_charge": 0.019,
+      "unknown": 0.01
+    },
+    "payment_type_share_test": {
+      "card": 0.616,
+      "cash": 0.263,
+      "mobile_wallet": 0.092,
+      "no_charge": 0.017,
+      "unknown": 0.011
+    },
+    "max_category_share_drift": 0.012
+  },
+  "reproducibility": {
+    "stage": "reproducibility",
+    "fixed_seed": 42,
+    "status": "pass",
+    "note": "Data generation, train/test split, and model fitting all use this fixed seed."
+  }
+}

@@ -1,0 +1,6 @@
+cluster,trip_count,avg_fare,avg_distance,centroid_lat,centroid_lon,dominant_zone
+0,1370,48.966,7.614,40.803,-73.867,LaGuardia Airport
+1,1290,46.493,7.506,40.678,-73.944,Brooklyn
+2,3350,42.622,6.336,40.784,-73.971,Manhattan
+3,1656,61.093,9.821,40.686,-73.785,Queens
+4,234,103.646,17.712,40.58,-74.151,Staten Island
