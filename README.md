@@ -25,6 +25,27 @@ A collection of independently implemented data science and full-stack applicatio
 
 Every project is self-contained. Open its directory for setup, usage, methodology, results, and limitations.
 
+## YouTube project walkthroughs
+
+| Project | Video walkthrough |
+|---|---|
+| 00 — Zenith Dynamic Task Workspace | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_00_VIDEO_ID) |
+| 01 — NYC Taxi Trip Prediction | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_01_VIDEO_ID) |
+| 02 — Nano LLM Transformer | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_02_VIDEO_ID) |
+| 03 — Customer Segmentation | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_03_VIDEO_ID) |
+| 04 — Associative Pattern Mining | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_04_VIDEO_ID) |
+| 05 — Data Science Skills Lab | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_05_VIDEO_ID) |
+| 06 — Anomaly Detection | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_06_VIDEO_ID) |
+| 07 — AutoGluon AutoML | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_07_VIDEO_ID) |
+| 08 — Data Science Visual Foundations | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_08_VIDEO_ID) |
+| 09 — FlowForge DAG Engine | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_09_VIDEO_ID) |
+| 10 — CRISP-DM Data Science Platform | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_10_VIDEO_ID) |
+| 11 — Enterprise Data Science Audit | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_11_VIDEO_ID) |
+| 12 — Time-Series Forecasting | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_12_VIDEO_ID) |
+| 13 — NYC Taxi Audit Platform | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_13_VIDEO_ID) |
+| 14 — AutoGluon Multimodal Suite | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_14_VIDEO_ID) |
+| 15 — SPY Forecasting Platform | [Watch on YouTube](https://www.youtube.com/watch?v=REPLACE_WITH_PROJECT_15_VIDEO_ID) |
+
 ## AI-assisted development
 
 This portfolio was developed with coding assistance from OpenAI Codex and Anthropic Claude. Project direction, integration, testing, and final decisions were managed by the repository owner.
